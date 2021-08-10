@@ -1,0 +1,161 @@
+<mvc:View
+    controllerName="com.satya.upload.uploadui5.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:u="sap.ui.unified"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content >
+                <VBox class="sapUiTinyMargin" renderType="Bare">
+                    <MessageStrip
+                        class="sapUiTinyMarginBottom"
+                        visible="{=!${device>/browser/mobile}}"
+                        showIcon="true"
+                        type="Information"
+                        text="To add files, you can also use drag &amp; drop on your desktop or tablet." />
+                           <!-- <Label text="Notes" />
+                            <TextArea id="TextArea" cols="200" height="100px" /> -->
+                </VBox>
+                 <!-- uploadUrl="/v2/browseUpload/FileHeader"  -->      
+                 <!--       <UploadCollection
+                            id="UploadCollection"
+                            maximumFilenameLength="55"
+                            maximumFileSize="10"
+                            multiple="true"
+                            fileType="png,jpeg,gif,svg,jpg,pdf,txt,xlsx,docx"
+                            sameFilenameAllowed="true"
+                            instantUpload="false"
+                            noDataDescription="Drop files or use the &quot;Add&quot; button to keep files ready for upload"
+                            change="onChange"
+                            fileDeleted="onFileDeleted"
+                            filenameLengthExceed="onFilenameLengthExceed"
+                            fileSizeExceed="onFileSizeExceed"
+                            typeMissmatch="onTypeMissmatch"
+                            uploadComplete="onUploadComplete"
+                            beforeUploadStarts="onBeforeUploadStarts" />
+                        <Button id="Button" text="Upload Now" press="onStartUpload" /> 
+                  -->  
+
+                        <!-- upload collection with items-->
+
+                        	<UploadCollection
+                                    id="UploadCollection"
+                                    maximumFilenameLength="55"
+                                    maximumFileSize="10"
+                                    multiple="false"
+                                    fileType="png,jpeg,gif,svg,jpg,pdf,txt,xlsx,docx"
+                                    change="onChange"
+                                    fileSizeExceed="onFileSizeExceed"
+                                    selectionChange="onSelectionChange"
+                                    typeMissmatch="onTypeMissmatch"
+                                    uploadComplete="onUploadComplete"
+                                    fileDeleted="onFileDeleted"
+                                    beforeUploadStarts="onBeforeUploadStarts"
+                                    items="{
+                                        path: '/items',
+                                        templateShareable: false
+                                    }"
+                                    >
+                                    <toolbar>
+                                        <OverflowToolbar id="myId">
+                                            <Title id="attachmentTitle" />
+                                            <ToolbarSpacer />
+                                            <Button
+                                                id="downloadButton"
+                                                text="Download"
+                                                press="onDownloadItem"
+                                                enabled="false"
+                                                type="Transparent" />
+                                            <UploadCollectionToolbarPlaceholder/>
+                                        </OverflowToolbar>
+                                    </toolbar>
+                                    <items>
+                                        <UploadCollectionItem
+                                            documentId="{documentId}"
+                                            fileName="{fileName}"
+                                            mimeType="{mimeType}"
+                                            thumbnailUrl="{thumbnailUrl}"
+                                            url="{url}"
+                                            enableEdit="{edit}"
+                                            enableDelete="{delete}"
+                                            visibleDelete="{delete}"
+                                            visibleEdit="{edit}"
+                                            attributes="{
+                                                path: 'attributes',
+                                                templateShareable: false
+                                            }"
+                                            statuses="{
+                                                path: 'statuses',
+                                                templateShareable: false
+                                            }"
+                                            selected="false">
+                                            <attributes>
+                                                <ObjectAttribute
+                                                    title="{title}"
+                                                    text="{
+                                                        parts: [ 'text', 'type' ],
+                                                        formatter : '.formatAttribute'
+                                                    }"
+                                                    active="false" />
+                                            </attributes>
+                                            <statuses>
+                                                <ObjectStatus title="{title}"
+                                                    text="{text}"
+                                                    state="{state}" />
+                                            </statuses>
+                                        </UploadCollectionItem>
+                                    </items>
+                                </UploadCollection>
+
+                        <!-- -->
+
+                       
+                    <!--  Table -->
+                    <VBox>
+                    <Table id="idFileTable"
+                        inset="false"
+                        items="{
+                            path: 'File>/',
+                            sorter: {
+                                path: 'Name'
+                            }
+                        }">
+                        <headerToolbar>
+                        <OverflowToolbar>
+                            <content>
+                                <Title text="Files" level="H2"/>
+                                <ToolbarSpacer />
+                                 <Button text="Display Files" press="onDisplayFiles" />
+                            </content>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                            <columns>
+                                <Column width="12em">
+                                    <Text text="File Name" />
+                                </Column>
+                                <Column>
+                                    <Text text="Content Download" />
+                                </Column>
+                                </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{File>fileName} - {File>fileID}" />
+                                        <Link text="{File>ID}" press="onDownloadFile" />
+                                       
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </VBox>
+                    </content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

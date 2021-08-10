@@ -1,0 +1,1 @@
+using uploadService as service from '../../srv/upload-service';
